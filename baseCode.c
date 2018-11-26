@@ -2,13 +2,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void funcFatorial(int *vet, int sizeVet, int valueMod, int numberTeamThreds);
+void fullVet(int *vet, int sizeVet, int valueMod, int numberTeamThreads);
+int fibonacci(int num);
 
 int main(int argc, char *argv[]){
 	// Pego por linha de comando as informacoes
 	int sizeVet = atoi(argv[1]);
 	int valueMod = atoi(argv[2]);
-	int numberTeamThreds = atoi(argv[3]);
+	int numberTeamThreads = atoi(argv[3]);
 	int *vet;
 
 	vet = (int*)malloc(sizeVet*sizeof(int));
@@ -16,9 +17,9 @@ int main(int argc, char *argv[]){
 		printf("Erro ao alocar Memoria");
 		exit(1);
 	}
-	// Incova a funcao encarregada de realizar o fatorial.
 	// Tal funcao contera a paralelizacao.
-	funcFatorial(vet, sizeVet, valueMod, numberTeamThreds);
+	// Func encarregado de preencher o vator e chamar o fibonacci
+	fullVet(vet, sizeVet, valueMod, numberTeamThreads);
 
 	// printa os valores contidos no vetor
 	for(int i=0; i<sizeVet; ++i)
@@ -28,12 +29,15 @@ int main(int argc, char *argv[]){
 	return 0;
 }
 
-void funcFatorial(int *vet, int sizeVet, int valueMod, int numberTeamThreds){
+void fullVet(int *vet, int sizeVet, int valueMod, int numberTeamThreads){
 	for(int i=0; i<sizeVet; ++i){
-		int n =  i%valueMod;
-		int resultFat = 1;
-		for(int j=1; j<=n; ++j)
-			resultFat *= j;
-		vet[i]=resultFat;
+		vet[i]= fibonacci(i%valueMod+1);		}
 	}
+}
+
+int fibonacci(int num){
+	if(num==1 || num==2)
+		return 1;
+	else
+		return fibonacci(num-1)+fibonacci(num-2);
 }
