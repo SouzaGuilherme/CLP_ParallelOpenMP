@@ -21,9 +21,9 @@ int main(int argc, char *argv[]){
 	// Func encarregado de preencher o vator e chamar o fibonacci
 	fullVet(vet, sizeVet, valueMod, numberTeamThreads);
 
-	// printa os valores contidos no vetor
-	for(int i=0; i<sizeVet; ++i)
-		printf("Vetor[%d] = %d;\n", i, vet[i]);
+	// // printa os valores contidos no vetor
+	// for(int i=0; i<sizeVet; ++i)
+	// 	printf("Vetor[%d] = %d;\n", i, vet[i]);
 
 	free(vet);
 	return 0;
@@ -31,9 +31,10 @@ int main(int argc, char *argv[]){
 
 void fullVet(int *vet, int sizeVet, int valueMod, int numberTeamThreads){
 	for(int i=0; i<sizeVet; ++i){
-		vet[i]= fibonacci(i%valueMod+1);		}
+		vet[i]= fibonacci(i%valueMod+1);	
 	}
 }
+
 
 int fibonacci(int num){
 	if(num==1 || num==2)

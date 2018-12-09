@@ -24,8 +24,8 @@ int main(int argc, char *argv[]){
 	fullVet(vet, sizeVet, valueMod, numberTeamThreads);
 
 	// printa os valores contidos no vetor.
-	for(int i=0; i<sizeVet; ++i)
-		printf("Vetor[%d] = %d;\n", i, vet[i]);
+	// for(int i=0; i<sizeVet; ++i)
+	// 	printf("Vetor[%d] = %d;\n", i, vet[i]);
 
 	free(vet);
 	return 0;
@@ -49,7 +49,7 @@ int fibonacci(int num){
 	else{
 		#pragma omp task shared(i)
 		i=fibonacci(num-1);
-		#pragma mop task shared(j)
+		#pragma omp task shared(j)
 		j=fibonacci(num-2);
 		#pragma omp taskwait
 		return i+j;
